@@ -93,9 +93,15 @@ html, body {
 }
 .location-text { font-size: 13px; color: #a1a1a1; }
 
-/* Icons */
-.icons-logo { width: 33px; height: 33px; filter: drop-shadow(0 0 5px rgba(255,255,255,0.5)); transition: transform 0.2s; }
-.icons-logo:hover { transform: scale(1.2); }
+.icons-logo {
+  width: 33px;
+  height: 33px;
+  object-fit: contain;
+}
+
+
+.icons-logo:hover { 
+transform: scale(1.2); }
 
 .icons {
   display: flex;          /* make flex row */
