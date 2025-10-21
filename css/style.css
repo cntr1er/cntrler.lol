@@ -94,26 +94,37 @@ html, body {
 .location-text { font-size: 13px; color: #a1a1a1; }
 
 /* Icons */
-.icons { position: absolute; top: 325px; left: 50%; transform: translateX(-50%) translateY(-10px); display: flex; gap: 12px; }
 .icons-logo { width: 33px; height: 33px; filter: drop-shadow(0 0 5px rgba(255,255,255,0.5)); transition: transform 0.2s; }
 .icons-logo:hover { transform: scale(1.2); }
 
 .icons {
-  display: flex;
-  align-items: center;
-  gap: 12px; /* spacing between all icons */
+  display: flex;          /* make flex row */
+  align-items: center;    /* vertical center */
+  gap: 12px;              /* space between icons */
   left: 50%;
   position: absolute;
   top: 325px;
   transform: translateX(-50%);
 }
 
-/* Existing styles for crypto icons remain the same */
 .crypto-icon, .social-icon {
   position: relative;
+  display: inline-flex;   /* inline-flex ensures they stay in row */
   cursor: pointer;
 }
 
+.icons-logo {
+  width: 33px;
+  height: 33px;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+  transition: transform 0.2s;
+}
+
+.icons-logo:hover {
+  transform: scale(1.2);
+}
+
+/* Tooltip */
 .crypto-icon .tooltip, .social-icon .tooltip {
   position: absolute;
   bottom: 120%;
