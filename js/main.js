@@ -18,17 +18,14 @@ function typeWriter() {
 }
 typeWriter();
 
-// Start experience on click
+// Start experience on overlay click
 overlay.addEventListener('click', async () => {
-  // Fade out overlay
   overlay.style.opacity = '0';
   overlay.style.pointerEvents = 'none';
   setTimeout(() => overlay.style.display = 'none', 1000);
 
-  // Show main content
   mainContent.style.display = 'block';
 
-  // Play video with audio
   try {
     video.muted = false; // unmute after user interaction
     await video.play();
@@ -37,36 +34,30 @@ overlay.addEventListener('click', async () => {
     console.error("Video play failed:", err);
   }
 
-  // Initialize crypto icons copy functionality
+  // Initialize crypto icon tooltips
   const cryptoIcons = document.querySelectorAll('.crypto-icon');
 
   cryptoIcons.forEach(icon => {
     const tooltip = icon.querySelector('.tooltip');
+    if (!tooltip) return;
 
+    // Click to copy
     icon.addEventListener('click', async (e) => {
-      e.stopPropagation(); // prevent triggering overlay click
-      const address = icon.getAttribute('data-address');
+      e.stopPropagation();
+      const address = icon.dataset.address;
       try {
         await navigator.clipboard.writeText(address);
         tooltip.textContent = "Copied Address!";
-        setTimeout(() => {
-          tooltip.textContent = "Copy Address";
-        }, 1500);
+        setTimeout(() => { tooltip.textContent = "Copy Address"; }, 1500);
       } catch (err) {
-        console.error("Failed to copy:", err);
+        console.error("Clipboard failed:", err);
         tooltip.textContent = "Copy Failed!";
-        setTimeout(() => {
-          tooltip.textContent = "Copy Address";
-        }, 1500);
+        setTimeout(() => { tooltip.textContent = "Copy Address"; }, 1500);
       }
     });
 
-    // Optional: show tooltip on hover
-    icon.addEventListener('mouseenter', () => {
-      tooltip.style.opacity = '1';
-    });
-    icon.addEventListener('mouseleave', () => {
-      tooltip.style.opacity = '0';
-    });
+    // Show tooltip on hover (optional: already handled by CSS)
+    icon.addEventListener('mouseenter', () => { tooltip.style.opacity = '1'; });
+    icon.addEventListener('mouseleave', () => { tooltip.style.opacity = '0'; });
   });
 });
