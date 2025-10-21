@@ -10,61 +10,98 @@
   <script src="js/typewriter.js" defer></script>
   <script src="js/main.js" defer></script>
   <title>cntrler</title>
+
+  <style>
+    /* view counter styling */
+    #view-count {
+      position: absolute;
+      bottom: 10px;
+      left: 15px;
+      color: #ccc;
+      font-size: 13px;
+      opacity: 0.7;
+      font-family: 'Unbounded', sans-serif;
+      user-select: none;
+      pointer-events: none;
+      z-index: 3;
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- background video -->
-<video id="bg-video" preload="auto" loop muted>
-  <source src="/other/vid/19e2c6b8-3498-4725-9902-ea1e85889e0b.mp4" type="video/mp4">
-  Your browser does not support HTML5 video.
-</video>
+  <!-- background video -->
+  <video id="bg-video" preload="auto" loop muted>
+    <source src="/other/vid/19e2c6b8-3498-4725-9902-ea1e85889e0b.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
 
-<!-- Click to Enter Overlay -->
-<div id="enter-overlay"><span id="typewriter">Click Anywhere To Enter</span></div>
+  <!-- Click to Enter Overlay -->
+  <div id="enter-overlay"><span id="typewriter">Click Anywhere To Enter</span></div>
 
-<!-- Main Content -->
-<div id="main-content">
-  <div class="container">
-    <div class="card" data-tilt>
-      <img class="card-avatar" src="other/imgs/avatar.png" alt="Avatar">
-      <h1 class="nick">cntrler</h1>
-      <h2 class="pronouns">he/him</h2>
-      <span class="badge">coding savant</span>
+  <!-- Main Content -->
+  <div id="main-content">
+    <div class="container">
+      <div class="card" data-tilt>
+        <img class="card-avatar" src="other/imgs/avatar.png" alt="Avatar">
+        <h1 class="nick">cntrler</h1>
+        <h2 class="pronouns">he/him</h2>
+        <span class="badge">coding savant</span>
 
-<div class="location">
-  <svg class="location-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path fill="currentColor" d="M12 2C8.134 2 5 5.134 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.866-3.134-7-7-7zm0 9.5c-1.379 0-2.5-1.121-2.5-2.5S10.621 6.5 12 6.5 14.5 7.621 14.5 9 13.379 11.5 12 11.5z"/>
-  </svg>
-  <p class="location-text">hell</p>
-</div>
+        <div class="location">
+          <svg class="location-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path fill="currentColor"
+              d="M12 2C8.134 2 5 5.134 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.866-3.134-7-7-7zm0 9.5c-1.379 0-2.5-1.121-2.5-2.5S10.621 6.5 12 6.5 14.5 7.621 14.5 9 13.379 11.5 12 11.5z" />
+          </svg>
+          <p class="location-text">hell</p>
+        </div>
 
-<div class="icons">
-  <!-- crypto icons -->
-  <div class="crypto-icon" data-address="0xF5CD6cD1e26DD794ba27A99aF406b940CEe193A2">
-    <img src="other/imgs/eth.png" class="icons-logo">
-    <div class="tooltip">Copy Address</div>
+        <div class="icons">
+          <!-- crypto icons -->
+          <div class="crypto-icon" data-address="0xF5CD6cD1e26DD794ba27A99aF406b940CEe193A2">
+            <img src="other/imgs/eth.png" class="icons-logo">
+            <div class="tooltip">Copy Address</div>
+          </div>
+
+          <div class="crypto-icon" data-address="LYQZhHrVBhvpavsF7xsdURbJ1krafTbgQF">
+            <img src="other/imgs/ltc.png" class="icons-logo">
+            <div class="tooltip">Copy Address</div>
+          </div>
+
+          <!-- social icons -->
+          <div class="social-icon">
+            <a href="https://github.com/cntr1er" target="_blank">
+              <img src="other/imgs/github.png" class="icons-logo">
+              <div class="tooltip">GitHub</div>
+            </a>
+          </div>
+
+          <div class="social-icon">
+            <a href="https://discord.com/users/1145512925273006150" target="_blank">
+              <img src="other/imgs/discord.png" class="icons-logo">
+              <div class="tooltip">Discord</div>
+            </a>
+          </div>
+        </div>
+
+        <!-- 👁️ View Counter -->
+        <p id="view-count">Views: loading...</p>
+
+      </div>
+    </div>
   </div>
 
-  <div class="crypto-icon" data-address="LYQZhHrVBhvpavsF7xsdURbJ1krafTbgQF">
-    <img src="other/imgs/ltc.png" class="icons-logo">
-    <div class="tooltip">Copy Address</div>
-  </div>
-
-  <!-- social icons -->
-  <div class="social-icon">
-    <a href="https://github.com/cntr1er" target="_blank">
-      <img src="other/imgs/github.png" class="icons-logo">
-      <div class="tooltip">GitHub</div>
-    </a>
-  </div>
-
-
-  <div class="social-icon">
-    <a href="https://discord.com/users/1145512925273006150" target="_blank">
-      <img src="other/imgs/discord.png" class="icons-logo">
-      <div class="tooltip">Discord</div>
-    </a>
-  </div>
-</div>
+  <!-- view counter script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const viewCounter = document.getElementById('view-count');
+      if (viewCounter) {
+        fetch('https://api.countapi.xyz/hit/cntrler.lol/visits')
+          .then(res => res.json())
+          .then(data => viewCounter.textContent = `Views: ${data.value}`)
+          .catch(() => viewCounter.textContent = "Views: unavailable");
+      }
+    });
+  </script>
 </body>
 </html>
