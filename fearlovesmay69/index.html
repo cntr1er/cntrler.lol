@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta information -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>daddy</title>
+
+    <!-- Favicon and stylesheets -->
+    <link rel="icon" href="/media/gengarrr.png" />
+    <link rel="stylesheet" href="/css/cntrler.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat+Brush&amp;display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Inline styles -->
+    <style>
+      body {
+        overflow: hidden; /* Hide scrollbars */
+      }
+    </style>
+  </head>
+
+  <body onresize="resize()" onload="main()">
+    <!-- Background canvas for effects -->
+    <canvas id="canvas-background"></canvas>
+
+    <!-- Scripts for additional effects -->
+    <script src="/js/snow.js"></script>
+    <script src="/js/sparkle.js"></script>
+
+    <!-- Video overlay section -->
+    <video loop preload="auto" class="vidoverlay" id="video">
+      <source src="/media/Genox_blue_lock.mp4" type="video/mp4" />
+    </video>
+
+    <!-- Checkbox and overlay for interaction -->
+    <input type="checkbox" autocomplete="off" id="overlay-toggle" />
+    <div class="overlay fullscreen">
+      <label for="overlay-toggle" onclick="videoPlay(); audioPlay();">
+        <span
+          class="overlayno-hover hover"
+          style="font-family: monospace; font-size: 0.6em"
+          >click to enter</span
+        >
+        <span
+          class="overlayhover hover"
+          style="font-family: monospace; font-size: 0.6em"
+          >click to enter</span
+        >
+      </label>
+    </div>
+
+    <!-- Content in the center -->
+    <div id="center" align="center">
+      <span>
+        <!-- Main heading and social links -->
+        <p class="hover graffiti" style="font-size: 100px">cha</p>
+        <p class="hover">@cantcha</p>
+        <br />
+        </p>
+        <br />
+      </span>
+    </div>
+
+    <!-- JavaScript functions -->
+    <script>
+      // Function to play video with adjusted volume
+      function videoPlay() {
+        var video = document.getElementById("video");
+        video.volume = 0.55;
+        video.play();
+      }
+
+      // Function to play audio with adjusted volume
+      function audioPlay() {
+        var audio = document.getElementById("audio");
+        audio.volume = 0;
+        audio.play();
+      }
+    </script>
+  </body>
+</html>
