@@ -1,0 +1,147 @@
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background-color: #000;
+  font-family: sans-serif;
+  cursor: url(https://r2.guns.lol/4c2c75da-5dab-42a9-b39f-33d56fd8abb2.gif) 16 16, auto !important;
+}
+
+/* Video */
+#bg-video {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Overlay */
+#enter-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: (0,0,0,0.85);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: opacity 1s ease;
+}
+
+/* Main content hidden initially */
+#main-content {
+  display: none;
+  z-index: 5;
+}
+
+/* Container */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  width: 500px;
+  height: 480px;
+  background-color: rgba(0, 0, 0, 0.3); /* semi-transparent black */
+  border-radius: 12px;
+  outline: 1px solid rgba(255,255,255,0.1);
+  overflow-y: auto;
+  position: relative;
+  transition: 0.3s;
+  backdrop-filter: blur(5px); /* optional: adds a nice frosted glass effect */
+}
+
+/* Make all elements inside the card slightly transparent */
+.card * {
+  opacity: 0.85; /* adjust from 0 to 1 for more or less transparency */
+  transition: opacity 0.3s;
+}
+
+
+/* Card content */
+.card-avatar { width: 100px; height: 100px; border-radius: 50%; position: absolute; top: 100px; left: 50%; transform: translate(-50%, -64px); object-fit: cover; }
+.nick { position: absolute; top: 155px; left: 50%; transform: translateX(-50%) translateY(-10px); color: #fff; font-family: 'Unbounded', sans-serif; font-size: 20px; font-weight: 600; }
+.pronouns { position: absolute; top: 185px; left: 50%; transform: translateX(-50%) translateY(-10px); color: #ccc; font-size: 12px; }
+.badge { position: absolute; 
+  top: 230px; 
+  left: 50%; 
+  transform: translateX(-50%) translateY(-10px); 
+  background-color: black; 
+  color: white; 
+  padding: 5px 10px; 
+  border-radius: 13px; 
+  font-size: 12px;
+  opacity: 0.5;
+}
+
+
+/* Location */
+.location { position: absolute; top: 270px; left: 50%; transform: translateX(-50%) translateY(-10px); display: flex; align-items: center; gap: 7px; }
+.location-logo {
+  width: 13px;
+  height: 13px;
+  color: rgba(255, 255, 255, 0.85); /* white with slight transparency */
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+}
+.location-text { font-size: 13px; color: #a1a1a1; }
+
+/* Icons */
+.icons { position: absolute; top: 325px; left: 50%; transform: translateX(-50%) translateY(-10px); display: flex; gap: 12px; }
+.icons-logo { width: 33px; height: 33px; filter: drop-shadow(0 0 5px rgba(255,255,255,0.5)); transition: transform 0.2s; }
+.icons-logo:hover { transform: scale(1.2); }
+
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* spacing between all icons */
+  left: 50%;
+  position: absolute;
+  top: 325px;
+  transform: translateX(-50%);
+}
+
+/* Existing styles for crypto icons remain the same */
+.crypto-icon, .social-icon {
+  position: relative;
+  cursor: pointer;
+}
+
+.crypto-icon .tooltip, .social-icon .tooltip {
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0,0,0,0.8);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.crypto-icon .tooltip::after, .social-icon .tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgba(0,0,0,0.8) transparent transparent transparent;
+}
+
+.crypto-icon:hover .tooltip, .social-icon:hover .tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-5px);
+}
