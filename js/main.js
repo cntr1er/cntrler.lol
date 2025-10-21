@@ -59,5 +59,6 @@ overlay.addEventListener('click', async () => {
     // Show tooltip on hover (optional: already handled by CSS)
     icon.addEventListener('mouseenter', () => { tooltip.style.opacity = '1'; });
     icon.addEventListener('mouseleave', () => { tooltip.style.opacity = '0'; });
+    
   });
 });

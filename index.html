@@ -86,22 +86,23 @@
 
         <!-- 👁️ View Counter -->
         <p id="view-count">Views: loading...</p>
+        </p>
+        <script type="module">
+          import { Counter } from 'https://cdn.jsdelivr.net/npm/counterapi/dist/counter.esm.min.js';
 
-      </div>
-    </div>
-  </div>
+          // Initialize CounterAPI client (V2)
+          const counter = new Counter({ workspace: 'cntrler' }); // your workspace
 
-  <!-- view counter script -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const viewCounter = document.getElementById('view-count');
-      if (viewCounter) {
-        fetch('https://api.countapi.xyz/hit/cntrler.lol/visits')
-          .then(res => res.json())
-          .then(data => viewCounter.textContent = `Views: ${data.value}`)
-          .catch(() => viewCounter.textContent = "Views: unavailable");
-      }
-    });
-  </script>
+          // Increment the counter every page load
+          counter.up('cntrler') // your counter slug
+            .then(result => {
+              document.getElementById('view-count').textContent = `👁️ Views: ${result.value}`;
+            })
+            .catch(err => {
+              console.error('Counter error:', err.message);
+              document.getElementById('view-count').textContent = '👁️ Views: unavailable';
+            });
+</script>
+
 </body>
 </html>
