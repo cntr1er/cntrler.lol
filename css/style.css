@@ -87,8 +87,9 @@ html, body {
   font-size: 20px; 
   font-weight: 600; }
 .pronouns { position: absolute; top: 185px; left: 50%; transform: translateX(-50%) translateY(-10px); color: #ccc; font-size: 12px; }
-.badge { position: absolute; 
-  top: 230px; 
+.badge {
+  position: absolute; 
+  top: 220px; 
   left: 50%; 
   transform: translateX(-50%) translateY(-10px); 
   background-color: black; 
@@ -101,7 +102,17 @@ html, body {
 
 
 /* Location */
-.location { position: absolute; top: 270px; left: 50%; transform: translateX(-50%) translateY(-10px); display: flex; align-items: center; gap: 7px; }
+
+.location {
+  position: absolute;
+  top: 185px; /* or 270px from earlier */
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
 .location-logo {
   width: 13px;
   height: 13px;
@@ -147,7 +158,7 @@ transform: scale(1.2); }
   gap: 12px;              /* space between icons */
   left: 50%;
   position: absolute;
-  top: 325px;
+  top: 300px;
   transform: translateX(-50%);
 }
 
@@ -199,4 +210,80 @@ transform: scale(1.2); }
 .crypto-icon:hover .tooltip, .social-icon:hover .tooltip {
   opacity: 1;
   transform: translateX(-50%) translateY(-5px);
+}
+
+
+/* Roles bar container */
+.roles-bar {
+  position: absolute;
+  top: 250px; /* below coding savant badge */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  border-radius: 30px;
+  padding: 8px 15px;
+  outline: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 8px rgba(0,0,0,0.3);
+  z-index: 2;
+}
+
+/* Each role icon */
+.role {
+  position: relative;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.role:hover {
+  transform: scale(1.2);
+  color: #8eeaff; /* highlight color */
+}
+
+/* Tooltip card */
+.role::after {
+  content: attr(data-role);
+  position: absolute;
+  bottom: 130%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background-color: rgba(0, 0, 0, 0.85);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  opacity: 0;
+  white-space: nowrap;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+.role:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Optional: tooltip arrow */
+.role::before {
+  content: '';
+  position: absolute;
+  bottom: 115%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.85) transparent transparent transparent;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.role:hover::before {
+  opacity: 1;
 }
